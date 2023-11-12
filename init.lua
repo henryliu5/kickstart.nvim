@@ -43,6 +43,9 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+-- Stuff for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -614,6 +617,26 @@ require('Comment').setup(
     },
   }
 )
+
+-- liuh: add nvim-tree
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup(
+  {
+    actions = {
+      open_file = {
+        quit_on_open = true,
+      },
+    },
+  }
+)
+
+
+vim.keymap.set({ 'n', 'v' }, '<leader>f', ':NvimTreeToggle<cr>', { desc = '[F]ile tree (liuh)' })
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
