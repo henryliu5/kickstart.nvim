@@ -14,4 +14,8 @@ return {
     { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
     { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
   },
+  config = function()
+    -- Set tmux_navigator_save_on_switch to write all buffers before navigating
+    vim.g.tmux_navigator_save_on_switch = 2
+  end,
 }
