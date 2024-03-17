@@ -816,7 +816,9 @@ require('lazy').setup({
         indent = { enable = true },
       }
 
-      require('lualine').setup()
+      require('lualine').setup {
+        sections = { lualine_c = { require('auto-session.lib').current_session_name } },
+      }
 
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
