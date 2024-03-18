@@ -5,6 +5,7 @@ return {
     events = {
       'InsertLeave',
       'BufLeave',
+      'FocusLost',
     },
     silent = false,
     exclude_ft = { 'neo-tree' },
