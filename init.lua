@@ -586,7 +586,7 @@ require('lazy').setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu
-      require('mason').setup()
+      -- require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -610,6 +610,17 @@ require('lazy').setup({
           ['jdtls'] = function()
             require('java').setup()
             require('lspconfig').jdtls.setup {}
+          end,
+          ['clangd'] = function()
+            local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+
+            require('lspconfig').clangd.setup {
+              capabilities = cmp_nvim_lsp.default_capabilities(),
+              cmd = {
+                'clangd',
+                '--offset-encoding=utf-16',
+              },
+            }
           end,
         },
       }
@@ -820,7 +831,7 @@ require('lazy').setup({
       }
 
       require('lualine').setup {
-        sections = { lualine_c = { require('auto-session.lib').current_session_name } },
+        -- sections = { lualine_c = { require().current_session_name } },
       }
 
       -- There are additional nvim-treesitter modules that you can use to interact
