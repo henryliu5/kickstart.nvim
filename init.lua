@@ -537,7 +537,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -550,7 +550,7 @@ require('lazy').setup({
         -- tsserver = {},
         --
         --
-        jdtls = {},
+        -- jdtls = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -830,9 +830,9 @@ require('lazy').setup({
         indent = { enable = true },
       }
 
-      require('lualine').setup {
-        -- sections = { lualine_c = { require().current_session_name } },
-      }
+      -- require('lualine').setup {
+      -- sections = { lualine_c = { require().current_session_name } },
+      -- }
 
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -881,6 +881,24 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+vim.api.nvim_create_user_command('FormatDisable', function(args)
+  if args.bang then
+    -- FormatDisable! will disable formatting just for this buffer
+    vim.b.disable_autoformat = true
+  else
+    vim.g.disable_autoformat = true
+  end
+end, {
+  desc = 'Disable autoformat-on-save',
+  bang = true,
+})
+vim.api.nvim_create_user_command('FormatEnable', function()
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
+end, {
+  desc = 'Re-enable autoformat-on-save',
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
