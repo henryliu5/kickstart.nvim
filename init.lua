@@ -716,7 +716,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, python = true, py = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -889,6 +889,7 @@ require('lazy').setup({
     end,
     config = function()
       require('catppuccin').setup {
+        flavour = 'macchiato',
         integrations = {
           cmp = true,
           gitsigns = true,
@@ -943,6 +944,7 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
       require('mini.pairs').setup()
+      require('mini.animate').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
